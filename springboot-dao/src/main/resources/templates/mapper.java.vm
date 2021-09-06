@@ -1,0 +1,30 @@
+package ${package.Mapper};
+
+import ${package.Entity}.${entity};
+import ${superMapperClassPackage};
+#if($!{cfg.isBuildEntityByOrderSerialId})
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+#end
+import org.springframework.stereotype.Repository;
+
+/**
+ * <p>
+ * $!{table.comment} Mapper 接口
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.mapperName} : ${superMapperClass}<${entity}>
+#else
+@Repository
+public interface ${table.name}Mapper extends ${superMapperClass}<${entity}> {
+
+    #if($!{cfg.isBuildEntityByOrderSerialId})
+     List<${entity}>  get${table.name}BySerialId(@Param("orderSerialId") String orderSerialId);
+    #end
+
+}
+#end

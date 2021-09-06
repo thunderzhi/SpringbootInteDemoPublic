@@ -1,0 +1,55 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.xa.DruidXADataSource
+    druid:
+      name: TestDB
+      TestDB:
+        url: jdbc:mysql://xxxxxxxx:3306/TestDB?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+        userName: root
+        passWord: 11111111111111
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 30000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 1
+        validationQueryTimeout: 10000
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+      TestDB2:
+        name: TestDB2
+        url: jdbc:mysql://xxxxxxxxxxx:3306/TestDB2?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
+        userName: root
+        passWord: 2222222222222
+        initialSize: 5
+        minIdle: 5
+        maxActive: 20
+        maxWait: 30000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: select 1
+        validationQueryTimeout: 10000
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall
+        connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
+
+# add atomikos log
+logging:
+  level:
+    com:
+      cxz:
+        cxzspringboot_web: debug
+      atomikos: trace
